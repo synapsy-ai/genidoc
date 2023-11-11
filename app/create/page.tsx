@@ -16,6 +16,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import CreateTemplate from "@/components/create-template";
+import { TemplateCombobox } from "@/components/template-combobox";
+import { Template, loadTemplates } from "@/lib/template";
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
   {
@@ -30,6 +32,7 @@ const CodeEditor = dynamic(
 export default function Page() {
   const [md, setMd] = useState("# Hello, World");
   const [codeSn, setCodeSn] = useState("");
+  const [template, setTemplate] = useState<Template | undefined>();
   const { theme } = useTheme();
   return (
     <main className="mt-16">
@@ -37,6 +40,7 @@ export default function Page() {
         <h3 className="text-xl font-bold m-2">Templates</h3>
         <div className="flex items-center space-x-2">
           <CreateTemplate />
+          <TemplateCombobox setTemp={setTemplate} templates={loadTemplates()} />
         </div>
       </section>
       <section className="items-center space-x-2">
@@ -55,7 +59,7 @@ export default function Page() {
         />
       </section>
       <section className="px-2 my-2 flex justify-center">
-        <Button>Generate</Button>
+        <Button disabled={!template || !codeSn}>Generate</Button>
       </section>
       <Tabs defaultValue="code">
         <TabsList className="grid w-full grid-cols-2 mt-4">
