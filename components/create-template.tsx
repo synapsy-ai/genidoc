@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { LanguageComboBox } from "./language-combobox";
 import { Input } from "./ui/input";
+import { addTemplate } from "@/lib/template";
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
   { ssr: false }
@@ -64,7 +65,18 @@ export default function CreateTemplate() {
             className="disabled:cursor-not-allowed"
             disabled={!name || !template || !lang}
           >
-            <Button disabled={!name || !template || !lang}>Create</Button>
+            <Button
+              onClick={() =>
+                addTemplate({
+                  name: name,
+                  markdown_template: template,
+                  language: lang,
+                })
+              }
+              disabled={!name || !template || !lang}
+            >
+              Create
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
