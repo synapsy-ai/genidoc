@@ -20,6 +20,8 @@ import { TemplateCombobox } from "@/components/template-combobox";
 import { Template, loadTemplates } from "@/lib/template";
 import { Input } from "@/components/ui/input";
 import { getSettings, setSettings } from "@/lib/settings";
+import OpenAI from "openai";
+
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
   {
@@ -40,7 +42,33 @@ export default function Page() {
   const [key, setKey] = useState(settings?.key);
   const { theme } = useTheme();
 
-  function generate() {}
+  async function generate() {
+    setMd("");
+    const openai = new OpenAI({
+      apiKey: key,
+      dangerouslyAllowBrowser: true,
+    });
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: `GOAL: Generate markdown documentation for code snippets. Language: ${template?.language}. Use the following template: ${template?.markdown_template}`,
+        },
+        {
+          role: "user",
+          content: `Generate the markdown documentation for this code:\n${codeSn}`,
+        },
+      ],
+      stream: true,
+    });
+    let code = "";
+    for await (const chunk of completion) {
+      if (chunk.choices[0].delta.content)
+        code += chunk.choices[0].delta.content;
+      setMd(code);
+    }
+  }
 
   return (
     <main className="mt-16">
@@ -59,6 +87,7 @@ export default function Page() {
           placeholder="Paste your code snippet here."
           onChange={(evn) => setCodeSn(evn.target.value)}
           padding={15}
+          language={template?.language}
           data-color-mode={theme == "light" ? "light" : "dark"}
           style={{
             fontFamily:
@@ -82,7 +111,9 @@ export default function Page() {
         </div>
       </section>
       <section className="px-2 my-2 flex justify-center">
-        <Button disabled={!template || !codeSn || !key}>Generate</Button>
+        <Button onClick={generate} disabled={!template || !codeSn || !key}>
+          Generate
+        </Button>
       </section>
       <Tabs defaultValue="code">
         <TabsList className="grid w-full grid-cols-2 mt-4">
