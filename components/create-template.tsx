@@ -15,12 +15,15 @@ import {
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { LanguageComboBox } from "./language-combobox";
+import { Input } from "./ui/input";
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
   { ssr: false }
 );
 export default function CreateTemplate() {
-  const [template, setTemplate] = useState(``);
+  const [template, setTemplate] = useState("");
+  const [name, setName] = useState("");
+  const [lang, setLang] = useState("");
   const { theme } = useTheme();
   return (
     <Dialog>
@@ -38,6 +41,8 @@ export default function CreateTemplate() {
             of generative artificial intelligence.
           </DialogDescription>
         </DialogHeader>
+        <h3 className="font-bold">Name</h3>
+        <Input value={name} onChange={(v) => setName(v.target.value)} />
         <h3 className="font-bold">Template</h3>
         <CodeEditor
           className="rounded-md border border-slate-200 dark:border-slate-600"
@@ -53,10 +58,13 @@ export default function CreateTemplate() {
           }}
         />
         <h3 className="font-bold">Language</h3>
-        <LanguageComboBox />
+        <LanguageComboBox setLang={setLang} />
         <DialogFooter>
-          <DialogClose>
-            <Button>Create</Button>
+          <DialogClose
+            className="disabled:cursor-not-allowed"
+            disabled={!name || !template || !lang}
+          >
+            <Button disabled={!name || !template || !lang}>Create</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

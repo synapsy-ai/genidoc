@@ -111,7 +111,7 @@ const languages = [
   { value: "yaml", label: "Yaml" },
 ];
 
-export function LanguageComboBox() {
+export function LanguageComboBox(props: { setLang: Function }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -142,6 +142,7 @@ export function LanguageComboBox() {
                   value={language.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
+                    props.setLang(currentValue === value ? "" : currentValue);
                     setOpen(false);
                   }}
                 >
