@@ -18,6 +18,8 @@ import { Plus } from "lucide-react";
 import CreateTemplate from "@/components/create-template";
 import { TemplateCombobox } from "@/components/template-combobox";
 import { Template, loadTemplates } from "@/lib/template";
+import { Input } from "@/components/ui/input";
+import { getSettings, setSettings } from "@/lib/settings";
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
   {
@@ -30,10 +32,16 @@ const CodeEditor = dynamic(
   { ssr: false }
 );
 export default function Page() {
+  let settings = getSettings();
+
   const [md, setMd] = useState("# Hello, World");
   const [codeSn, setCodeSn] = useState("");
   const [template, setTemplate] = useState<Template | undefined>();
+  const [key, setKey] = useState(settings?.key);
   const { theme } = useTheme();
+
+  function generate() {}
+
   return (
     <main className="mt-16">
       <section>
@@ -58,8 +66,23 @@ export default function Page() {
           }}
         />
       </section>
+      <section>
+        <h3 className="text-xl font-bold m-2">Options</h3>
+        <div className="grid grid-cols-[auto,1fr] mx-2 items-center space-x-2">
+          <p>API Key</p>
+          <Input
+            type="password"
+            value={key}
+            onChange={(v) => {
+              setKey(v.target.value);
+              if (settings) settings.key = v.target.value;
+              setSettings(settings || { key: v.target.value });
+            }}
+          />
+        </div>
+      </section>
       <section className="px-2 my-2 flex justify-center">
-        <Button disabled={!template || !codeSn}>Generate</Button>
+        <Button disabled={!template || !codeSn || !key}>Generate</Button>
       </section>
       <Tabs defaultValue="code">
         <TabsList className="grid w-full grid-cols-2 mt-4">
