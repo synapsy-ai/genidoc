@@ -39,8 +39,26 @@ export default function Page() {
           <CreateTemplate />
         </div>
       </section>
+      <section className="items-center space-x-2">
+        <h3 className="text-xl font-bold m-2">Code Snippet</h3>
+        <CodeEditor
+          className="rounded-md border border-slate-200 dark:border-slate-600"
+          value={codeSn}
+          placeholder="Paste your code snippet here."
+          onChange={(evn) => setCodeSn(evn.target.value)}
+          padding={15}
+          data-color-mode={theme == "light" ? "light" : "dark"}
+          style={{
+            fontFamily:
+              "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+          }}
+        />
+      </section>
+      <section className="px-2 my-2 flex justify-center">
+        <Button>Generate</Button>
+      </section>
       <Tabs defaultValue="code">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-2 mt-4">
           <TabsTrigger value="code">Code</TabsTrigger>
           <TabsTrigger value="preview">Preview</TabsTrigger>
         </TabsList>
@@ -68,21 +86,6 @@ export default function Page() {
           </div>
         </TabsContent>
       </Tabs>
-      <section className="items-center space-x-2">
-        <h3 className="text-xl font-bold m-2">Code Snippet</h3>
-        <CodeEditor
-          className="rounded-md border border-slate-200 dark:border-slate-600"
-          value={codeSn}
-          placeholder="Paste your code snippet here."
-          onChange={(evn) => setCodeSn(evn.target.value)}
-          padding={15}
-          data-color-mode={theme == "light" ? "light" : "dark"}
-          style={{
-            fontFamily:
-              "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
-          }}
-        />
-      </section>
     </main>
   );
 }
