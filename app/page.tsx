@@ -12,7 +12,7 @@ export default function Home() {
         <p className="text-slate-500">
           Document your products using OpenAI&apos;s GPT-4 models.
         </p>
-        <Link href={""}>
+        <Link href={"/create"}>
           <Button className="m-2">Get started</Button>
         </Link>
       </section>
