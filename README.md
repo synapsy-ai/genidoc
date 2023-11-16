@@ -72,7 +72,7 @@ Synapsy Genidoc is a powerful Next.js application designed to streamline the pro
 2. Navigate to the project directory:
 
    ```bash
-   cd synapsy-genidoc
+   cd genidoc
    ```
 
 3. Install dependencies:
