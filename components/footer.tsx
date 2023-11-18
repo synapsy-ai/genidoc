@@ -8,7 +8,7 @@ export default function SiteFooter() {
     <footer>
       <div className="flex flex-col justify-center space-y-2 px-5 py-10 sm:grid sm:grid-cols-3">
         <div className="flex items-center justify-center sm:justify-normal">
-          <Link href="/">
+          <Link href="https://peyronnet.group">
             <Logo width={256} height={64} />
           </Link>
         </div>
