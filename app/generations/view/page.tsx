@@ -1,7 +1,9 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getGenerations } from "@/lib/generation";
 import { MarkdownPreviewProps } from "@uiw/react-markdown-preview";
+import { Copy } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -57,6 +59,16 @@ export default function ViewPage() {
           </div>
         </TabsContent>
       </Tabs>
+      <section className="flex justify-center">
+        <Button
+          variant="outline"
+          className="flex space-x-2"
+          onClick={() => navigator.clipboard.writeText(md)}
+        >
+          <Copy size={16} />
+          <span>Copy</span>
+        </Button>
+      </section>
     </main>
   );
 }

@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Codesandbox, Plus } from "lucide-react";
+import { Codesandbox, Copy, Plus } from "lucide-react";
 import CreateTemplate from "@/components/create-template";
 import { TemplateCombobox } from "@/components/template-combobox";
 import { Template, loadTemplates } from "@/lib/template";
@@ -154,6 +154,16 @@ export default function Page() {
           </div>
         </TabsContent>
       </Tabs>
+      <section className="flex justify-center">
+        <Button
+          variant="outline"
+          className="flex space-x-2 mt-2"
+          onClick={() => navigator.clipboard.writeText(md)}
+        >
+          <Copy size={16} />
+          <span>Copy</span>
+        </Button>
+      </section>
     </main>
   );
 }
