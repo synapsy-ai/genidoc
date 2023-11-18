@@ -1,9 +1,13 @@
 "use client";
+import { GenerationItem } from "@/components/generation-item";
+import { getGenerations, getSortedGenerations } from "@/lib/generation";
+import { loadTemplates } from "@/lib/template";
 import { Eraser } from "lucide-react";
 import { useState } from "react";
 
 export default function Generations() {
-  const [noItems, setNoItems] = useState(true);
+  let gens = getSortedGenerations();
+  const [noItems, setNoItems] = useState(gens.length === 0);
   return (
     <main className="mt-16 mx-2">
       <header>
@@ -11,7 +15,18 @@ export default function Generations() {
         <p>You can find here all your previous generations.</p>
       </header>
       {!noItems ? (
-        <section className="flex flex-wrap justify-center p-5 md:justify-start"></section>
+        <section className="mt-4">
+          {gens.map((el, i) => (
+            <div>
+              <h3 className="font-bold">{el.name}</h3>
+              <div className="flex flex-wrap justify-center p-5 md:justify-start">
+                {el.gens.map((item, i) => (
+                  <GenerationItem key={i} id={i} item={item} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
       ) : (
         <section className="flex min-h-[50vh] flex-col items-center justify-center">
           <Eraser height={48} width={48} />
