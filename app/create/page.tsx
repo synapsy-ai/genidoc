@@ -147,6 +147,9 @@ export default function Page() {
               style={{ background: "transparent" }}
               className="p-2"
               source={md}
+              wrapperElement={{
+                "data-color-mode": theme === "light" ? "light" : "dark",
+              }}
             />
           </div>
         </TabsContent>

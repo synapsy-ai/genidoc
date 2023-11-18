@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { CodeBlock, sunburst } from "react-code-blocks";
+import { useTheme } from "next-themes";
 
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
@@ -20,6 +21,7 @@ export default function ViewPage() {
   const generations = getGenerations();
   const gen = generations[id];
   const [md, setMd] = useState(gen.result);
+  const { theme } = useTheme();
 
   return (
     <main className="mt-20 print:mt-0">
@@ -48,6 +50,9 @@ export default function ViewPage() {
               style={{ background: "transparent" }}
               className="p-2"
               source={md}
+              wrapperElement={{
+                "data-color-mode": theme === "light" ? "light" : "dark",
+              }}
             />
           </div>
         </TabsContent>
