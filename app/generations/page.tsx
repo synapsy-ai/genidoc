@@ -17,11 +17,11 @@ export default function Generations() {
       {!noItems ? (
         <section className="mt-4">
           {gens.map((el, i) => (
-            <div>
+            <div key={i}>
               <h3 className="font-bold">{el.name}</h3>
               <div className="flex flex-wrap justify-center p-5 md:justify-start">
-                {el.gens.map((item, i) => (
-                  <GenerationItem key={i} id={i} item={item} />
+                {el.gens.map((item, j) => (
+                  <GenerationItem key={j} id={j} item={item} />
                 ))}
               </div>
             </div>
