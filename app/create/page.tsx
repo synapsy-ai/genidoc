@@ -14,13 +14,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Codesandbox, Plus } from "lucide-react";
 import CreateTemplate from "@/components/create-template";
 import { TemplateCombobox } from "@/components/template-combobox";
 import { Template, loadTemplates } from "@/lib/template";
 import { Input } from "@/components/ui/input";
 import { getSettings, setSettings } from "@/lib/settings";
 import OpenAI from "openai";
+import { addGeneration } from "@/lib/generation";
 
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
@@ -68,6 +69,12 @@ export default function Page() {
         code += chunk.choices[0].delta.content;
       setMd(code);
     }
+    addGeneration({
+      template: template,
+      snippet: codeSn,
+      date: new Date(),
+      result: code ?? md ?? "",
+    });
   }
 
   return (
