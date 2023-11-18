@@ -24,7 +24,7 @@ export default function NavBar() {
           <Button variant="ghost">Create</Button>
         </Link>
         <Link href={"/generations"}>
-          <Button variant="ghost">Generations</Button>
+          <Button variant="ghost">My Generations</Button>
         </Link>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
