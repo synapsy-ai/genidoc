@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { Generation } from "@/lib/generation";
+import { Calendar } from "lucide-react";
 
 export function GenerationItem(props: { item: Generation; id: number }) {
   function getRandomGradient() {
@@ -42,6 +43,10 @@ export function GenerationItem(props: { item: Generation; id: number }) {
               </span>
             </span>
             <span className="flex flex-col items-start">
+              <p className="mx-1 mt-1 text-sm flex text-slate-500 dark:text-slate-400 items-center">
+                <Calendar height={12} />
+                <span>{new Date(props.item.date).toLocaleString()}</span>
+              </p>
               <h3 className="m-2 text-left font-bold">
                 {props.item.snippet.length > 30
                   ? props.item.snippet.substring(0, 30) + "..."
