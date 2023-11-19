@@ -1,5 +1,7 @@
 export interface Settings {
   key: string;
+  availableModels?: string[];
+  defaultModel?: string;
 }
 
 export function getSettings(): Settings | undefined {
