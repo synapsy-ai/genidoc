@@ -7,7 +7,8 @@ import { useState } from "react";
 
 export default function Generations() {
   let gens = getSortedGenerations();
-  const [noItems, setNoItems] = useState(gens.length === 0);
+  let unsorted = getGenerations();
+  const [noItems, setNoItems] = useState(unsorted.length === 0);
   return (
     <main className="mt-16 mx-2">
       <header>
