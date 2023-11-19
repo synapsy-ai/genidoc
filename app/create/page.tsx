@@ -86,8 +86,8 @@ export default function Page() {
           <TemplateCombobox setTemp={setTemplate} templates={loadTemplates()} />
         </div>
       </section>
-      <section className="items-center space-x-2">
-        <h3 className="text-xl font-bold m-2">Code Snippet</h3>
+      <section className="items-center m-2">
+        <h3 className="text-xl font-bold">Code Snippet</h3>
         <CodeEditor
           className="rounded-md border border-slate-200 dark:border-slate-600"
           value={codeSn}
@@ -102,8 +102,8 @@ export default function Page() {
           }}
         />
       </section>
-      <section>
-        <h3 className="text-xl font-bold m-2">Options</h3>
+      <section className="m-2">
+        <h3 className="text-xl font-bold">Options</h3>
         <div className="grid grid-cols-[auto,1fr] mx-2 items-center space-x-2">
           <p>API Key</p>
           <Input
@@ -123,11 +123,11 @@ export default function Page() {
         </Button>
       </section>
       <Tabs defaultValue="code">
-        <TabsList className="grid w-full grid-cols-2 mt-4">
+        <TabsList className="grid m-2 grid-cols-2 mt-4">
           <TabsTrigger value="code">Code</TabsTrigger>
           <TabsTrigger value="preview">Preview</TabsTrigger>
         </TabsList>
-        <TabsContent value="code" className="h-full w-full">
+        <TabsContent value="code" className="h-full mx-2">
           <div style={{ fontFamily: "consolas" }}>
             <CodeBlock
               {...{
