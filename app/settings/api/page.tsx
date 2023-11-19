@@ -3,14 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getSettings, setSettings } from "@/lib/settings";
 import { useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { getModels } from "@/lib/ai";
+import { ModelCombobox } from "@/components/model-combobox";
 export default function ApiPage() {
   let settings = getSettings();
   const [key, setKey] = useState(settings?.key);
@@ -18,6 +12,15 @@ export default function ApiPage() {
     settings?.availableModels ?? ["gpt-3.5-turbo"]
   );
   const [model, setModel] = useState(settings?.defaultModel ?? "gpt-3.5-turbo");
+
+  function setDefaultModel(model: string) {
+    setModel(model);
+    if (settings) {
+      settings.defaultModel = model;
+      setSettings(settings);
+    }
+  }
+
   return (
     <div className="space-y-2">
       <div>
@@ -37,33 +40,20 @@ export default function ApiPage() {
         <h4 className="font-bold">Default Model</h4>
         <p>The default OpenAI to use.</p>
         <div className="flex space-x-2">
-          <Select
+          <ModelCombobox
             defaultValue={model}
-            onValueChange={(v) => {
-              setModel(v);
-              if (settings) {
-                settings.defaultModel = v;
-                setSettings(settings);
-              }
-            }}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Model" />
-            </SelectTrigger>
-            <SelectContent>
-              {models.sort().map((el, i) => (
-                <SelectItem value={el} key={i}>
-                  {el}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            models={models}
+            setModel={setDefaultModel}
+          />
           <Button
             onClick={async () => {
-              setModels(await getModels(settings?.key ?? ""));
+              const m = await getModels(settings?.key ?? "");
+              setModels(m);
               if (settings) {
-                settings.availableModels = models;
+                settings.availableModels = m;
                 setSettings(settings);
+              } else {
+                setSettings({ key: key ?? "", availableModels: m });
               }
             }}
             className="p-0"
