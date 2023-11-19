@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Codesandbox, Copy, Plus } from "lucide-react";
+import { Codesandbox, Copy, Plus, Settings } from "lucide-react";
 import CreateTemplate from "@/components/create-template";
 import { TemplateCombobox } from "@/components/template-combobox";
 import { Template, loadTemplates } from "@/lib/template";
@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { getSettings, setSettings } from "@/lib/settings";
 import OpenAI from "openai";
 import { addGeneration } from "@/lib/generation";
+import Link from "next/link";
 
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
@@ -104,7 +105,7 @@ export default function Page() {
       </section>
       <section className="m-2">
         <h3 className="text-xl font-bold">Options</h3>
-        <div className="grid grid-cols-[auto,1fr] mx-2 items-center space-x-2">
+        <div className="grid grid-cols-[auto,1fr,auto] items-center gap-2">
           <p>API Key</p>
           <Input
             type="password"
@@ -115,6 +116,11 @@ export default function Page() {
               setSettings(settings || { key: v.target.value });
             }}
           />
+          <Link href="/settings">
+            <Button variant="outline">
+              <Settings height={14} />
+            </Button>
+          </Link>
         </div>
       </section>
       <section className="px-2 my-2 flex justify-center">
