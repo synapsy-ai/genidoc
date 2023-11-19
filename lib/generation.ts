@@ -25,6 +25,12 @@ export function addGeneration(gen: Generation) {
   }
 }
 
+export function resetGenerations() {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("genidoc_gens");
+  }
+}
+
 export function getSortedGenerations(): SortedGenerations[] {
   let sort: SortedGenerations[] = [];
   let no_template = [];

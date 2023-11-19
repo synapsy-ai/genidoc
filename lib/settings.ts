@@ -17,3 +17,11 @@ export function getSettings(): Settings | undefined {
 export function setSettings(settings: Settings) {
   localStorage.setItem("genidoc_settings", JSON.stringify(settings));
 }
+
+export function resetSettings() {
+  setSettings({
+    key: "",
+    defaultModel: "gpt-3.5-turbo",
+    availableModels: ["gpt-3.5-turbo"],
+  });
+}
