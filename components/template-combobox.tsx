@@ -26,6 +26,7 @@ export function TemplateCombobox(props: {
 }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+  if (props.templates.length === 0) return <></>;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

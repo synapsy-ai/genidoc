@@ -16,12 +16,12 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { LanguageComboBox } from "./language-combobox";
 import { Input } from "./ui/input";
-import { addTemplate } from "@/lib/template";
+import { addTemplate, loadTemplates } from "@/lib/template";
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
   { ssr: false }
 );
-export default function CreateTemplate() {
+export default function CreateTemplate(props: { setTemplates: Function }) {
   const [template, setTemplate] = useState("");
   const [name, setName] = useState("");
   const [lang, setLang] = useState("");
@@ -66,13 +66,14 @@ export default function CreateTemplate() {
             disabled={!name || !template || !lang}
           >
             <Button
-              onClick={() =>
+              onClick={() => {
                 addTemplate({
                   name: name,
                   markdown_template: template,
                   language: lang,
-                })
-              }
+                });
+                props.setTemplates(loadTemplates());
+              }}
               disabled={!name || !template || !lang}
             >
               Create

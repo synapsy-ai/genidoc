@@ -43,6 +43,7 @@ export default function Page() {
   const [template, setTemplate] = useState<Template | undefined>();
   const [key, setKey] = useState(settings?.key);
   const { theme } = useTheme();
+  const [templates, setTemplates] = useState(loadTemplates());
 
   async function generate() {
     setMd("");
@@ -83,8 +84,8 @@ export default function Page() {
       <section>
         <h3 className="text-xl font-bold m-2">Templates</h3>
         <div className="flex items-center space-x-2">
-          <CreateTemplate />
-          <TemplateCombobox setTemp={setTemplate} templates={loadTemplates()} />
+          <CreateTemplate setTemplates={setTemplates} />
+          <TemplateCombobox setTemp={setTemplate} templates={templates} />
         </div>
       </section>
       <section className="items-center m-2">
