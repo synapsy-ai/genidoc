@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import dynamic from "next/dynamic";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   Dialog,
@@ -71,6 +72,7 @@ export default function CreateTemplate(props: { setTemplates: Function }) {
                   name: name,
                   markdown_template: template,
                   language: lang,
+                  id: uuidv4(),
                 });
                 props.setTemplates(loadTemplates());
               }}
