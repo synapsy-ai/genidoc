@@ -1,9 +1,10 @@
 "use client";
-import { Info, KeyRound } from "lucide-react";
+import { BookTemplate, Info, KeyRound } from "lucide-react";
 import Link from "next/link";
 
 const settingsPage = [
   { name: "OpenAI API", link: "api", icon: <KeyRound size={14} /> },
+  { name: "Templates", link: "templates", icon: <BookTemplate size={14} /> },
   { name: "Data", link: "data", icon: <Info size={14} /> },
 ];
 
