@@ -18,7 +18,7 @@ export default function Generations() {
       {!noItems ? (
         <section className="mt-4">
           {gens.map((el, i) => (
-            <div key={i}>
+            <div key={i} className={el.gens.length > 0 ? "" : "hidden"}>
               <h3 className="font-bold">{el.name}</h3>
               <div className="flex flex-wrap justify-center p-5 md:justify-start">
                 {el.gens.map((item, j) => (
