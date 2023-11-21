@@ -2,6 +2,7 @@
 import Link from "next/link";
 
 import Logo from "./logo";
+import { version } from "@/lib/version";
 
 export default function SiteFooter() {
   return (
@@ -49,7 +50,7 @@ export default function SiteFooter() {
       </div>
       <div className="flex flex-col items-center pb-4">
         <p className="text-center">
-          © {new Date().getFullYear()} Peyronnet Group and Synapsy
+          v{version} - © {new Date().getFullYear()} Peyronnet Group and Synapsy
         </p>
       </div>
     </footer>
