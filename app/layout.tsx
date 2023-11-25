@@ -9,6 +9,19 @@ const dmSans = DM_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Synapsy Genidoc",
   description: "Generate documentations easily using the power of AI.",
+  twitter: {
+    title: "Synapsy Genidoc",
+    description: "Generate documentations easily using the power of AI.",
+    card: "summary_large_image",
+    images: ["https://peyronnet.group/synapsy_genidoc_social.png"],
+    creator: "@PeyronnetGroup",
+  },
+  openGraph: {
+    title: "Synapsy Genidoc",
+    description: "Generate documentations easily using the power of AI.",
+    images: ["https://peyronnet.group/synapsy_genidoc_social.png"],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
