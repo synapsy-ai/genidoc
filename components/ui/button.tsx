@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           "bg-gradient-to-r from-blue-500 to-sky-500 text-white border border-blue-400 hover:from-blue-500/90 hover:to-blue-500/90 shadow-md shadow-blue-500/30 hover:shadow-lg hover:shadow-blue-500/40 transition",
         destructive:
-          "text-red-500 hover:bg-red-500/10 dark:hover:bg-red-900/50",
+          "text-red-500 border border-transparent hover:border-red-500 hover:bg-red-500/10 dark:hover:bg-red-900/50",
         outline:
           "border border-slate-200 hover:border-slate-300 dark:hover:border-slate-600 bg-transparent hover:bg-slate-100/50 hover:text-slate-900 dark:border-slate-800 dark:hover:bg-slate-800/50 dark:hover:text-slate-50",
         secondary:
