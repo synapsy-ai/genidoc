@@ -26,7 +26,7 @@ export default function ViewPage() {
   const { theme } = useTheme();
 
   return (
-    <main className="mt-20 print:mt-0">
+    <main className="sm:mt-20 mt-2 print:mt-0">
       <Tabs defaultValue="code">
         <TabsList className="grid w-full grid-cols-2 mt-4">
           <TabsTrigger value="code">Code</TabsTrigger>

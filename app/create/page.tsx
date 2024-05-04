@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Codesandbox, Copy, Plus, Settings } from "lucide-react";
+import { Codesandbox, Copy, Pen, PenBox, Plus, Settings } from "lucide-react";
 import CreateTemplate from "@/components/create-template";
 import { TemplateCombobox } from "@/components/template-combobox";
 import { Template, loadTemplates } from "@/lib/template";
@@ -23,6 +23,7 @@ import { getSettings, setSettings } from "@/lib/settings";
 import OpenAI from "openai";
 import { addGeneration } from "@/lib/generation";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
@@ -80,7 +81,15 @@ export default function Page() {
   }
 
   return (
-    <main className="mt-16">
+    <main className="sm:mt-16 mt-2">
+      <header className="flex items-center space-x-2 mx-2">
+        <PenBox />
+        <span>
+          <h2 className="text-2xl font-bold">Create</h2>
+          <p>Document your code using the power of AI.</p>
+        </span>
+      </header>
+      <Separator className="my-2" />
       <section>
         <h3 className="text-xl font-bold m-2">Templates</h3>
         <div className="flex items-center space-x-2">
