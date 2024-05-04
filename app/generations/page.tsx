@@ -1,8 +1,9 @@
 "use client";
 import { GenerationItem } from "@/components/generation-item";
+import { Separator } from "@/components/ui/separator";
 import { getGenerations, getSortedGenerations } from "@/lib/generation";
 import { loadTemplates } from "@/lib/template";
-import { Eraser } from "lucide-react";
+import { Eraser, List } from "lucide-react";
 import { useState } from "react";
 
 export default function Generations() {
@@ -10,11 +11,15 @@ export default function Generations() {
   let unsorted = getGenerations();
   const [noItems, setNoItems] = useState(unsorted.length === 0);
   return (
-    <main className="mt-16 mx-2">
-      <header>
-        <h2 className="text-2xl font-bold">My Generations</h2>
-        <p>You can find here all your previous generations.</p>
+    <main className="sm:mt-16 mt-2 mx-2">
+      <header className="flex items-center space-x-2">
+        <List />
+        <span>
+          <h2 className="text-2xl font-bold">My Generations</h2>
+          <p>You can find here all your previous generations.</p>
+        </span>
       </header>
+      <Separator className="my-2" />
       {!noItems ? (
         <section className="mt-4">
           {gens.map((el, i) => (

@@ -11,6 +11,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/ui/command";
 import {
   Popover,
@@ -48,27 +49,29 @@ export function ModelCombobox(props: {
           <CommandInput placeholder="Search models..." />
           <CommandEmpty>No model found.</CommandEmpty>
           <CommandGroup>
-            <ScrollArea className="h-[200px]">
-              {props.models.sort().map((model) => (
-                <CommandItem
-                  key={model}
-                  value={model}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    props.setModel(currentValue === value ? null : model);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value === model ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                  {model}
-                </CommandItem>
-              ))}
-            </ScrollArea>
+            <CommandList>
+              <ScrollArea className="h-[200px]">
+                {props.models.sort().map((model) => (
+                  <CommandItem
+                    key={model}
+                    value={model}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      props.setModel(currentValue === value ? null : model);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === model ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                    {model}
+                  </CommandItem>
+                ))}
+              </ScrollArea>
+            </CommandList>
           </CommandGroup>
         </Command>
       </PopoverContent>

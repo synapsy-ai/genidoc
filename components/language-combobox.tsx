@@ -11,6 +11,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/ui/command";
 import {
   Popover,
@@ -135,27 +136,29 @@ export function LanguageComboBox(props: { setLang: Function }) {
           <CommandInput placeholder="Search language..." />
           <CommandEmpty>No language found.</CommandEmpty>
           <CommandGroup>
-            <ScrollArea className="h-[200px]">
-              {languages.map((language) => (
-                <CommandItem
-                  key={language.value}
-                  value={language.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    props.setLang(currentValue === value ? "" : currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value === language.value ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                  {language.label}
-                </CommandItem>
-              ))}
-            </ScrollArea>
+            <CommandList>
+              <ScrollArea className="h-[200px]">
+                {languages.map((language) => (
+                  <CommandItem
+                    key={language.value}
+                    value={language.value}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      props.setLang(currentValue === value ? "" : currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === language.value ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                    {language.label}
+                  </CommandItem>
+                ))}
+              </ScrollArea>
+            </CommandList>
           </CommandGroup>
         </Command>
       </PopoverContent>

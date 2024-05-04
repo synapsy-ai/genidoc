@@ -2,6 +2,7 @@
 
 import { SettingsNavBar } from "@/components/settings-navbar";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetClose,
@@ -13,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { Menu } from "lucide-react";
+import { Menu, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function SettingsLayout({
@@ -24,11 +25,11 @@ export default function SettingsLayout({
   const pathname = usePathname();
 
   return (
-    <main className="mt-16 mx-2">
-      <section className="mb-4 grid grid-cols-[auto,1fr] items-center space-x-2">
+    <main className="sm:mt-16 mt-2">
+      <section className="grid grid-cols-[auto,1fr] items-center space-x-2 w-full">
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" className="sm:hidden">
+            <Button variant="ghost" className="sm:hidden ml-2">
               <Menu width={16} />
             </Button>
           </SheetTrigger>
@@ -38,11 +39,15 @@ export default function SettingsLayout({
             />
           </SheetContent>
         </Sheet>
-        <div>
-          <h3 className="font-bold text-2xl">Settings</h3>
-          <p>Customize Synapsy Genidoc.</p>
+        <div className="flex sm:space-x-2 items-center">
+          <Settings className="sm:block hidden" />
+          <div>
+            <h3 className="font-bold text-2xl">Settings</h3>
+            <p>Customize Synapsy Genidoc.</p>
+          </div>
         </div>
       </section>
+      <Separator className="my-2" />
       <section className="grid grid-cols-[auto,1fr]">
         <div>
           <span className="hidden sm:block">
