@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import NavBar from "@/components/navbar";
+import MobileNavBar from "@/components/mobile-nav";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -42,6 +43,7 @@ export default function RootLayout({
         >
           <NavBar />
           {children}
+          <MobileNavBar />
         </body>
       </ThemeProvider>
     </html>
