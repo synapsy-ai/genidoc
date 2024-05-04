@@ -11,6 +11,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/ui/command";
 import {
   Popover,
@@ -39,7 +40,8 @@ export function TemplateCombobox(props: {
         >
           {value
             ? props.templates.find(
-                (template) => template.name.toLowerCase() === value
+                (template) =>
+                  template.name.toLowerCase() === value.toLowerCase()
               )?.name
             : "Select templates..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -50,27 +52,29 @@ export function TemplateCombobox(props: {
           <CommandInput placeholder="Search template..." />
           <CommandEmpty>No template found.</CommandEmpty>
           <CommandGroup>
-            <ScrollArea className="h-[200px]">
-              {props.templates.map((template) => (
-                <CommandItem
-                  key={template.name}
-                  value={template.name}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    props.setTemp(currentValue === value ? null : template);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value === template.name ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                  {template.name}
-                </CommandItem>
-              ))}
-            </ScrollArea>
+            <CommandList>
+              <ScrollArea className="h-[200px]">
+                {props.templates.map((template) => (
+                  <CommandItem
+                    key={template.name}
+                    value={template.name}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      props.setTemp(currentValue === value ? null : template);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === template.name ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                    {template.name}
+                  </CommandItem>
+                ))}
+              </ScrollArea>
+            </CommandList>
           </CommandGroup>
         </Command>
       </PopoverContent>
