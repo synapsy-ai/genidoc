@@ -1,6 +1,5 @@
 import { Template, deleteTemplate, loadTemplates } from "@/lib/template";
 import { Button } from "./ui/button";
-import { Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
