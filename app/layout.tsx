@@ -40,7 +40,8 @@ export default function RootLayout({
       >
         <body
           className={
-            manrope.className + " dark:bg-slate-950 dark:text-white antialiased"
+            manrope.className +
+            " dark:bg-slate-950 dark:text-white antialiased scroll-smooth"
           }
         >
           <NavBar />

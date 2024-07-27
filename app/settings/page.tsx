@@ -65,6 +65,7 @@ export default function SettingsPage() {
     settings?.availableModels ?? ["gpt-3.5-turbo"]
   );
   const [modelQuery, setModelQuery] = useState("");
+  const [anchor, setAnchor] = useState("general");
   return (
     <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-slate-100/40 p-4 px-2 pb-20 dark:bg-transparent sm:mt-16 sm:pb-0 md:gap-8 md:p-10">
       <div className="mx-auto grid w-full max-w-6xl gap-2">
@@ -73,24 +74,42 @@ export default function SettingsPage() {
       <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
         <nav className="grid gap-4 p-2 text-sm text-muted-foreground">
           <Link
-            href="#"
-            className="font-semibold text-primary"
+            href="#general"
+            onClick={() => setAnchor("general")}
+            className={anchor === "general" ? "font-semibold text-primary" : ""}
             prefetch={false}
           >
             General
           </Link>
-          <Link href="#" prefetch={false}>
+          <Link
+            href="#models"
+            prefetch={false}
+            onClick={() => setAnchor("models")}
+            className={anchor === "models" ? "font-semibold text-primary" : ""}
+          >
             OpenAI Models
           </Link>
-          <Link href="#" prefetch={false}>
+          <Link
+            href="#templates"
+            prefetch={false}
+            onClick={() => setAnchor("templates")}
+            className={
+              anchor === "templates" ? "font-semibold text-primary" : ""
+            }
+          >
             Templates
           </Link>
-          <Link href="#" prefetch={false}>
+          <Link
+            href="#about"
+            prefetch={false}
+            onClick={() => setAnchor("about")}
+            className={anchor === "about" ? "font-semibold text-primary" : ""}
+          >
             About
           </Link>
         </nav>
         <div className="grid gap-6">
-          <Card>
+          <Card id="general">
             <CardHeader>
               <CardTitle>Theme</CardTitle>
               <CardDescription>
@@ -132,7 +151,7 @@ export default function SettingsPage() {
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card id="models">
             <CardHeader>
               <CardTitle>OpenAI Models</CardTitle>
               <CardDescription>
@@ -214,7 +233,7 @@ export default function SettingsPage() {
               />
             </CardContent>
           </Card>
-          <Card>
+          <Card id="templates">
             <CardHeader>
               <CardTitle>Templates</CardTitle>
               <CardDescription>Edit your code templates.</CardDescription>
@@ -315,7 +334,7 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card id="about">
             <CardHeader>
               <CardTitle>About</CardTitle>
               <CardDescription>
