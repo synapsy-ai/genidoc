@@ -18,13 +18,13 @@ export default function TemplateItem(props: {
   setTemplates: Function;
 }) {
   return (
-    <div className="grid grid-cols-[1fr,auto] m-2 shadow-lg bg-white dark:bg-slate-800 px-2 py-1 rounded-md items-center">
-      <p className="font-medium">{props.template.name}</p>
-      <span className="flex space-x-2">
+    <div className="grid grid-cols-[1fr,auto] shadow-lg items-center">
+      <h4 className="text-lg font-medium">{props.template.name}</h4>
+      <span className="space-x-2">
         <AlertDialog>
           <AlertDialogTrigger>
-            <Button variant="ghost" className="p-0 h-auto flex items-center">
-              <Trash2 height={14} />
+            <Button variant="secondary" className="h-auto flex items-center">
+              Delete
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
