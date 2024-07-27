@@ -1,5 +1,5 @@
 "use client";
-import { BookTemplate, Laptop, Moon, Sun } from "lucide-react";
+import { BookTemplate, Laptop, Moon, Sun, Trash2, X } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
@@ -20,6 +20,19 @@ import {
 import { loadTemplates } from "@/lib/template";
 import { useState } from "react";
 import TemplateItem from "@/components/template-item";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { resetGenerations } from "@/lib/generation";
+import { resetSettings } from "@/lib/settings";
 export default function SettingsPage() {
   const { setTheme } = useTheme();
   let templates = loadTemplates();
@@ -91,7 +104,6 @@ export default function SettingsPage() {
               </div>
             </CardContent>
           </Card>
-
           <Card>
             <CardHeader>
               <CardTitle>OpenAI Models</CardTitle>
@@ -161,6 +173,83 @@ export default function SettingsPage() {
               </div>
             </CardContent>
           </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Generation History</CardTitle>
+              <CardDescription>Manage your generation history.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button className="h-auto py-1 px-1" variant="destructive">
+                    <Trash2 height={14} />
+                    <p>Erase history</p>
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your history and remove your Generation data.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => {
+                        resetGenerations();
+                      }}
+                    >
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Reset settings</CardTitle>
+              <CardDescription>
+                Reset Synapsy Genidoc settings to their default values.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button className="h-auto py-1 px-1" variant="destructive">
+                    <X height={14} />
+                    <p>Reset Settings</p>
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your settings and reset them back to their default values.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() => {
+                        resetSettings();
+                      }}
+                    >
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>About</CardTitle>
