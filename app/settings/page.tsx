@@ -1,5 +1,13 @@
 "use client";
-import { BookTemplate, Laptop, Moon, Sun, Trash2, X } from "lucide-react";
+import {
+  ArrowUpRightFromSquare,
+  BookTemplate,
+  Laptop,
+  Moon,
+  Sun,
+  Trash2,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
@@ -33,6 +41,16 @@ import {
 } from "@/components/ui/alert-dialog";
 import { resetGenerations } from "@/lib/generation";
 import { resetSettings } from "@/lib/settings";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { version } from "@/lib/version";
 export default function SettingsPage() {
   const { setTheme } = useTheme();
   let templates = loadTemplates();
@@ -254,23 +272,47 @@ export default function SettingsPage() {
             <CardHeader>
               <CardTitle>About</CardTitle>
               <CardDescription>
-                Learn more about the Synapsy Write application.
+                Learn more about the Synapsy Genidoc application.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4">
-                <p>
-                  Synapsy Write is an AI-powered text and document generation
-                  tool that helps you create high-quality content with ease.
-                  Developed by a team of experts in natural language processing
-                  and machine learning, Synapsy Write leverages the latest
-                  advancements in language models to deliver exceptional
-                  results.
-                </p>
-                <Link href="#" className="text-primary" prefetch={false}>
-                  Learn more
-                </Link>
-              </div>
+              <p>
+                Synapsy Genidoc is a powerful documentation tool that uses the
+                latest advancements in natural language processing to streamline
+                the process of creating high-quality Markdown documentation for
+                your code.
+              </p>
+              <Dialog>
+                <DialogTrigger>
+                  <Button variant="link" className="space-x-2 mt-2">
+                    <ArrowUpRightFromSquare size={16} />
+                    <span>About</span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>About Synapsy Genidoc</DialogTitle>
+                    <p>
+                      Version {version} <br />© {new Date().getFullYear()}{" "}
+                      Synapsy by Peyronnet
+                    </p>
+                    <p>
+                      NextJS - MIT License - © 2024 Vercel, Inc.
+                      <br />
+                      RadixUI - MIT License - © 2022 WorkOS
+                      <br />
+                      shadcn/ui - MIT License - © 2023 shadcn
+                      <br />
+                      Lucide - ISC License - © 2024 Lucide Contributors
+                    </p>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <DialogClose>
+                      <Button variant="outline">Close</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </CardContent>
           </Card>
         </div>
