@@ -198,6 +198,24 @@ export default function SettingsPage() {
           </Card>
           <Card>
             <CardHeader>
+              <CardTitle>OpenAI API Key</CardTitle>
+              <CardDescription>Your OpenAI API Key.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Input
+                type="password"
+                placeholder="Enter your API Key"
+                value={key}
+                onChange={(v) => {
+                  setKey(v.target.value);
+                  if (settings) settings.key = v.target.value;
+                  setSettings(settings || { key: v.target.value });
+                }}
+              />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
               <CardTitle>Templates</CardTitle>
               <CardDescription>Edit your code templates.</CardDescription>
             </CardHeader>
