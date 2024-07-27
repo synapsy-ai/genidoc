@@ -17,7 +17,7 @@ export default function TemplateItem(props: {
   setTemplates: Function;
 }) {
   return (
-    <div className="grid grid-cols-[1fr,auto] shadow-lg items-center">
+    <div className="grid grid-cols-[1fr,auto] items-center">
       <h4 className="text-lg font-medium">{props.template.name}</h4>
       <span className="space-x-2">
         <AlertDialog>
