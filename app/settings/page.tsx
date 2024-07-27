@@ -40,7 +40,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { resetGenerations } from "@/lib/generation";
-import { resetSettings } from "@/lib/settings";
+import { getSettings, resetSettings, setSettings } from "@/lib/settings";
 import {
   Dialog,
   DialogClose,
@@ -51,10 +51,20 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { version } from "@/lib/version";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { getModels } from "@/lib/ai";
+import { Input } from "@/components/ui/input";
 export default function SettingsPage() {
   const { setTheme } = useTheme();
   let templates = loadTemplates();
+  let settings = getSettings();
   const [temp, setTemp] = useState(templates);
+  const [key, setKey] = useState(settings?.key);
+  const [model, setModel] = useState(settings?.defaultModel ?? "gpt-3.5-turbo");
+  const [models, setModels] = useState(
+    settings?.availableModels ?? ["gpt-3.5-turbo"]
+  );
+  const [modelQuery, setModelQuery] = useState("");
   return (
     <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-slate-100/40 p-4 px-2 pb-20 dark:bg-transparent sm:mt-16 sm:pb-0 md:gap-8 md:p-10">
       <div className="mx-auto grid w-full max-w-6xl gap-2">
@@ -130,41 +140,60 @@ export default function SettingsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-lg font-medium">GPT-3</h4>
-                    <p className="text-sm text-muted-foreground">
-                      General-purpose language model
-                    </p>
-                  </div>
-                  <Button variant="secondary" size="sm">
-                    Select
-                  </Button>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-lg font-medium">GPT-3.5</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Improved language model
-                    </p>
-                  </div>
-                  <Button variant="secondary" size="sm">
-                    Select
-                  </Button>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="text-lg font-medium">GPT-4</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Advanced language model
-                    </p>
-                  </div>
-                  <Button variant="secondary" size="sm">
-                    Select
-                  </Button>
-                </div>
+              <div className="flex justify-stretch">
+                <Input
+                  value={modelQuery}
+                  onChange={(v) => setModelQuery(v.target.value)}
+                  placeholder="Search models..."
+                />
+                <Button
+                  onClick={async () => {
+                    const m = await getModels(settings?.key ?? "");
+                    setModels(m);
+                    if (settings) {
+                      settings.availableModels = m;
+                      setSettings(settings);
+                    } else {
+                      setSettings({ key: key ?? "", availableModels: m });
+                    }
+                  }}
+                  className="text-nowrap"
+                  variant="link"
+                >
+                  Refresh model list
+                </Button>
               </div>
+              <ScrollArea className="h-36">
+                <div className="grid gap-4">
+                  {models.sort().map((m, i) => (
+                    <>
+                      {m.includes(modelQuery) && (
+                        <div
+                          key={i}
+                          className="flex items-center justify-between mr-3"
+                        >
+                          <div>
+                            <h4 className="text-lg font-medium">{m}</h4>
+                          </div>
+                          <Button
+                            onClick={() => {
+                              setModel(m);
+                              if (settings) {
+                                settings.defaultModel = m;
+                                setSettings(settings);
+                              }
+                            }}
+                            variant="secondary"
+                            size="sm"
+                          >
+                            {m === model ? "Selected" : "Select"}
+                          </Button>
+                        </div>
+                      )}
+                    </>
+                  ))}
+                </div>
+              </ScrollArea>
             </CardContent>
           </Card>
           <Card>
