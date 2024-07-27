@@ -19,8 +19,8 @@ export default function Home() {
                     Streamline Your Documentation with Synapsy Genidoc
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Synapsy Genidoc is a powerful app that uses OpenAI's GPT
-                    models to automatically generate high-quality Markdown
+                    Synapsy Genidoc is a powerful app that uses OpenAI&apos;s
+                    GPT models to automatically generate high-quality Markdown
                     documentation for your code, saving you time and effort.
                   </p>
                 </div>
@@ -85,7 +85,7 @@ export default function Home() {
                         Automatic Documentation Generation
                       </h3>
                       <p className="text-muted-foreground">
-                        Synapsy Genidoc uses OpenAI's GPT models to
+                        Synapsy Genidoc uses OpenAI&apos;s GPT models to
                         automatically generate detailed Markdown documentation
                         for your code, saving you time and effort.
                       </p>
