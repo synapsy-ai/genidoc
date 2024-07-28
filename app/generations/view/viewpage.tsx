@@ -28,7 +28,13 @@ export default function ViewPage() {
   const [md, setMd] = useState(gen.result);
   const { theme } = useTheme();
   const [nbTokens, setNbTokens] = useState(0);
-  const [nbWords] = useState(gen.result.split(" ").length);
+  const [nbWords] = useState(
+    gen.result
+      .replaceAll("#", "")
+      .replaceAll("|", "")
+      .replaceAll("-", "")
+      .split(" ").length
+  );
   const [nbChars] = useState(gen.result.length);
 
   const [price, setPrice] = useState("$0");
