@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import NavBar from "@/components/navbar";
 import MobileNavBar from "@/components/mobile-nav";
 
-const dmSans = DM_Sans({ subsets: ["latin"] });
+const manrope = Manrope({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Synapsy Genidoc",
@@ -39,7 +39,10 @@ export default function RootLayout({
         disableTransitionOnChange
       >
         <body
-          className={dmSans.className + " dark:bg-slate-950 dark:text-white"}
+          className={
+            manrope.className +
+            " dark:bg-slate-950 dark:text-white antialiased scroll-smooth"
+          }
         >
           <NavBar />
           {children}

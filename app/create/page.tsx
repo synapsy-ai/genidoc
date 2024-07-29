@@ -24,6 +24,21 @@ import OpenAI from "openai";
 import { addGeneration } from "@/lib/generation";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@radix-ui/react-select";
 
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
@@ -81,104 +96,143 @@ export default function Page() {
   }
 
   return (
-    <main className="sm:mt-16 mt-2">
-      <header className="flex items-center space-x-2 mx-2">
-        <PenBox />
-        <span>
-          <h2 className="text-2xl font-bold">Create</h2>
-          <p>Document your code using the power of AI.</p>
-        </span>
-      </header>
-      <Separator className="my-2" />
-      <section>
-        <h3 className="text-xl font-bold m-2">Templates</h3>
-        <div className="flex items-center space-x-2">
-          <CreateTemplate setTemplates={setTemplates} />
-          <TemplateCombobox setTemp={setTemplate} templates={templates} />
+    <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-slate-100/40 p-4 pb-16 dark:bg-transparent sm:mt-16 sm:pb-0 md:gap-8 md:p-10 print:mt-0 print:bg-white">
+      <div className="mx-auto grid w-full max-w-6xl gap-2 print:hidden">
+        <h1 className="text-3xl font-semibold">Create</h1>
+        <p className="text-muted-foreground">
+          Document your code using the power of AI.
+        </p>
+      </div>
+      <section className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[300px,1fr] lg:grid-cols-[350px,1fr]">
+        <div className="grid gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Template</CardTitle>
+              <CardDescription>
+                Select a pre-designed template for your Markdown documentation.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center space-x-2">
+                <CreateTemplate isEdit={false} setTemplates={setTemplates} />
+                <TemplateCombobox setTemp={setTemplate} templates={templates} />
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Options</CardTitle>
+              <CardDescription>
+                Provide required information about your generation.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-[auto,1fr,auto] items-center gap-2">
+                <p>API Key</p>
+                <Input
+                  type="password"
+                  value={key}
+                  onChange={(v) => {
+                    setKey(v.target.value);
+                    if (settings) settings.key = v.target.value;
+                    setSettings(settings || { key: v.target.value });
+                  }}
+                />
+                <Link href="/settings">
+                  <Button variant="outline">
+                    <Settings height={14} />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Prompt</CardTitle>
+              <CardDescription>Provide the code to document.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeEditor
+                className="rounded-md border border-slate-200 dark:border-slate-600"
+                value={codeSn}
+                placeholder="Paste your code snippet here."
+                onChange={(evn) => setCodeSn(evn.target.value)}
+                padding={15}
+                language={template?.language}
+                data-color-mode={theme == "light" ? "light" : "dark"}
+                style={{
+                  fontFamily:
+                    "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+                }}
+              />
+            </CardContent>
+            <CardFooter className="flex items-center justify-center space-x-2">
+              <Button
+                onClick={generate}
+                disabled={!template || !codeSn || !key}
+              >
+                Generate
+              </Button>
+              <Button
+                variant="outline"
+                className="flex space-x-2"
+                onClick={() => navigator.clipboard.writeText(md)}
+              >
+                <Copy size={16} />
+                <span>Copy</span>
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
-      </section>
-      <section className="items-center m-2">
-        <h3 className="text-xl font-bold">Code Snippet</h3>
-        <CodeEditor
-          className="rounded-md border border-slate-200 dark:border-slate-600"
-          value={codeSn}
-          placeholder="Paste your code snippet here."
-          onChange={(evn) => setCodeSn(evn.target.value)}
-          padding={15}
-          language={template?.language}
-          data-color-mode={theme == "light" ? "light" : "dark"}
-          style={{
-            fontFamily:
-              "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
-          }}
-        />
-      </section>
-      <section className="m-2">
-        <h3 className="text-xl font-bold">Options</h3>
-        <div className="grid grid-cols-[auto,1fr,auto] items-center gap-2">
-          <p>API Key</p>
-          <Input
-            type="password"
-            value={key}
-            onChange={(v) => {
-              setKey(v.target.value);
-              if (settings) settings.key = v.target.value;
-              setSettings(settings || { key: v.target.value });
-            }}
-          />
-          <Link href="/settings">
-            <Button variant="outline">
-              <Settings height={14} />
-            </Button>
-          </Link>
+        <div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Result</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex justify-start ">
+                <Tabs defaultValue="code">
+                  <TabsList>
+                    <TabsTrigger value="code">Code</TabsTrigger>
+                    <TabsTrigger value="preview">Preview</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="code">
+                    <div
+                      className="code-block"
+                      style={{ fontFamily: "consolas" }}
+                    >
+                      <CodeBlock
+                        {...{
+                          text: md,
+                          language: "markdown",
+                          wrapLongLines: true,
+                          showLineNumbers: false,
+                          theme: sunburst,
+                        }}
+                      />
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="preview">
+                    <div>
+                      <MarkdownPreview
+                        style={{
+                          background: "transparent",
+                          width: "100%",
+                        }}
+                        className="p-2"
+                        source={md}
+                        wrapperElement={{
+                          "data-color-mode":
+                            theme === "light" ? "light" : "dark",
+                        }}
+                      />
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </section>
-      <section className="px-2 my-2 flex justify-center">
-        <Button onClick={generate} disabled={!template || !codeSn || !key}>
-          Generate
-        </Button>
-      </section>
-      <Tabs defaultValue="code">
-        <TabsList className="grid m-2 grid-cols-2 mt-4">
-          <TabsTrigger value="code">Code</TabsTrigger>
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-        </TabsList>
-        <TabsContent value="code" className="h-full mx-2">
-          <div style={{ fontFamily: "consolas" }}>
-            <CodeBlock
-              {...{
-                text: md,
-                language: "markdown",
-                wrapLines: true,
-                showLineNumbers: false,
-                theme: sunburst,
-              }}
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="preview">
-          <div>
-            <MarkdownPreview
-              style={{ background: "transparent" }}
-              className="p-2"
-              source={md}
-              wrapperElement={{
-                "data-color-mode": theme === "light" ? "light" : "dark",
-              }}
-            />
-          </div>
-        </TabsContent>
-      </Tabs>
-      <section className="flex justify-center">
-        <Button
-          variant="outline"
-          className="flex space-x-2 mt-2"
-          onClick={() => navigator.clipboard.writeText(md)}
-        >
-          <Copy size={16} />
-          <span>Copy</span>
-        </Button>
       </section>
     </main>
   );

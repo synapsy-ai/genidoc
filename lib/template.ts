@@ -21,6 +21,12 @@ export function loadTemplates(): Template[] {
   return [];
 }
 
+export function saveTemplates(templates: Template[]) {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("templates", JSON.stringify(templates));
+  }
+}
+
 export function deleteTemplate(temp: Template) {
   let templates: Template[] = loadTemplates();
   let index: number = -1;

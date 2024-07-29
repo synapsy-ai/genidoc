@@ -112,9 +112,12 @@ const languages = [
   { value: "yaml", label: "Yaml" },
 ];
 
-export function LanguageComboBox(props: { setLang: Function }) {
+export function LanguageComboBox(props: {
+  setLang: Function;
+  defaultValue?: string;
+}) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(props.defaultValue || "");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
