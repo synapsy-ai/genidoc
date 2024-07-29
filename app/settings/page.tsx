@@ -243,6 +243,7 @@ export default function SettingsPage() {
                 {temp.length > 0 &&
                   temp.map((el, i) => (
                     <TemplateItem
+                      id={i}
                       template={el}
                       key={i}
                       setTemplates={setTemp}

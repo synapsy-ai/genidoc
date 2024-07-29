@@ -17,23 +17,42 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { LanguageComboBox } from "./language-combobox";
 import { Input } from "./ui/input";
-import { addTemplate, loadTemplates } from "@/lib/template";
+import {
+  addTemplate,
+  loadTemplates,
+  saveTemplates,
+  Template,
+} from "@/lib/template";
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
   { ssr: false }
 );
-export default function CreateTemplate(props: { setTemplates: Function }) {
-  const [template, setTemplate] = useState("");
-  const [name, setName] = useState("");
-  const [lang, setLang] = useState("");
+export interface TemplateEditorProps {
+  setTemplates: Function;
+  isEdit: boolean;
+  template?: Template;
+  index?: number;
+}
+export default function CreateTemplate(props: TemplateEditorProps) {
+  const [template, setTemplate] = useState(
+    props.template?.markdown_template || ""
+  );
+  const [name, setName] = useState(props.template?.name || "");
+  const [lang, setLang] = useState(props.template?.language || "");
   const { theme } = useTheme();
   return (
     <Dialog>
       <DialogTrigger>
-        <Button className="m-2 p-2 flex space-x-2 h-auto">
-          <Plus height={16} />
-          <p>Create</p>
-        </Button>
+        {!props.isEdit ? (
+          <Button className="m-2 p-2 flex space-x-2 h-auto">
+            <Plus height={16} />
+            <p>Create</p>
+          </Button>
+        ) : (
+          <Button variant="secondary" className="py-2 px-4 h-auto">
+            Edit
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -60,26 +79,50 @@ export default function CreateTemplate(props: { setTemplates: Function }) {
           }}
         />
         <h3 className="font-bold">Language</h3>
-        <LanguageComboBox setLang={setLang} />
+        <LanguageComboBox
+          defaultValue={props.template?.language || ""}
+          setLang={setLang}
+        />
         <DialogFooter>
           <DialogClose
             className="disabled:cursor-not-allowed"
             disabled={!name || !template || !lang}
           >
-            <Button
-              onClick={() => {
-                addTemplate({
-                  name: name,
-                  markdown_template: template,
-                  language: lang,
-                  id: uuidv4(),
-                });
-                props.setTemplates(loadTemplates());
-              }}
-              disabled={!name || !template || !lang}
-            >
-              Create
-            </Button>
+            {props.isEdit ? (
+              <Button
+                onClick={() => {
+                  if (!props.index) return;
+                  let t = loadTemplates();
+                  t[props.index] = {
+                    name: name,
+                    markdown_template: template,
+                    language: lang,
+                    id: props.template?.id || uuidv4(),
+                  };
+
+                  saveTemplates(t);
+                  props.setTemplates(loadTemplates());
+                }}
+                disabled={!name || !template || !lang}
+              >
+                Edit
+              </Button>
+            ) : (
+              <Button
+                onClick={() => {
+                  addTemplate({
+                    name: name,
+                    markdown_template: template,
+                    language: lang,
+                    id: uuidv4(),
+                  });
+                  props.setTemplates(loadTemplates());
+                }}
+                disabled={!name || !template || !lang}
+              >
+                Create
+              </Button>
+            )}
           </DialogClose>
         </DialogFooter>
       </DialogContent>

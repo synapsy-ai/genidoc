@@ -114,7 +114,7 @@ export default function Page() {
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-2">
-                <CreateTemplate setTemplates={setTemplates} />
+                <CreateTemplate isEdit={false} setTemplates={setTemplates} />
                 <TemplateCombobox setTemp={setTemplate} templates={templates} />
               </div>
             </CardContent>
