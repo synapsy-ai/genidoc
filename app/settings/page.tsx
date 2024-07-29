@@ -159,7 +159,7 @@ export default function SettingsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex justify-stretch">
+              <div className="flex justify-stretch pb-2">
                 <Input
                   value={modelQuery}
                   onChange={(v) => setModelQuery(v.target.value)}
