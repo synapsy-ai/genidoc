@@ -26,7 +26,7 @@
     "cmdk": "^1.0.4",
     "framer-motion": "^11.12.0",
     "gpt-token-utils": "^1.2.0",
-    "lucide-react": "^0.462.0",
+    "lucide-react": "^0.466.0",
     "next": "15.0.3",
     "next-themes": "^0.3.0",
     "openai": "^4.73.1",
