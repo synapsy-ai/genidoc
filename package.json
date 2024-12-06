@@ -32,7 +32,7 @@
     "openai": "^4.73.1",
     "react": "^18",
     "react-code-blocks": "^0.1.6",
-    "react-dom": "^18",
+    "react-dom": "^19",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^11.0.3"
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react-dom": "^19",
     "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9",
