@@ -17,7 +17,7 @@ const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
   {
     ssr: false,
-  }
+  },
 );
 export default function ViewPage() {
   const searchParams = useSearchParams();
@@ -33,7 +33,7 @@ export default function ViewPage() {
       .replaceAll("#", "")
       .replaceAll("|", "")
       .replaceAll("-", "")
-      .split(" ").length
+      .split(" ").length,
   );
   const [nbChars] = useState(gen.result.length);
 

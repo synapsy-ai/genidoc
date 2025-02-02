@@ -41,7 +41,7 @@ export function TemplateCombobox(props: {
           {value
             ? props.templates.find(
                 (template) =>
-                  template.name.toLowerCase() === value.toLowerCase()
+                  template.name.toLowerCase() === value.toLowerCase(),
               )?.name
             : "Select templates..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -67,7 +67,7 @@ export function TemplateCombobox(props: {
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        value === template.name ? "opacity-100" : "opacity-0"
+                        value === template.name ? "opacity-100" : "opacity-0",
                       )}
                     />
                     {template.name}

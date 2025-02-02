@@ -14,7 +14,7 @@ const Circle = forwardRef<
       ref={ref}
       className={cn(
         "z-10 flex size-12 items-center justify-center rounded-full border-2 border-border bg-white dark:bg-zinc-900 p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
-        className
+        className,
       )}
     >
       {children}
@@ -36,7 +36,7 @@ export function FeatureAnimation({ className }: { className?: string }) {
     <div
       className={cn(
         "relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg bg-background p-10 md:shadow-xl",
-        className
+        className,
       )}
       ref={containerRef}
     >

@@ -62,7 +62,7 @@ export default function SettingsPage() {
   const [key, setKey] = useState(settings?.key);
   const [model, setModel] = useState(settings?.defaultModel ?? "gpt-3.5-turbo");
   const [models, setModels] = useState(
-    settings?.availableModels ?? ["gpt-3.5-turbo"]
+    settings?.availableModels ?? ["gpt-3.5-turbo"],
   );
   const [modelQuery, setModelQuery] = useState("");
   const [anchor, setAnchor] = useState("general");

@@ -16,7 +16,7 @@ const Command = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full flex-col overflow-hidden rounded-md bg-white text-slate-950 dark:bg-slate-950 dark:text-slate-50",
-      className
+      className,
     )}
     {...props}
   />
@@ -50,7 +50,7 @@ const CommandInput = React.forwardRef<
       ref={ref}
       className={cn(
         "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-slate-500 disabled:cursor-not-allowed disabled:opacity-50 dark:placeholder:text-slate-400",
-        className
+        className,
       )}
       {...props}
     />
@@ -93,7 +93,7 @@ const CommandGroup = React.forwardRef<
     ref={ref}
     className={cn(
       "overflow-hidden p-1 text-slate-950 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-slate-500 dark:text-slate-50 dark:[&_[cmdk-group-heading]]:text-slate-400",
-      className
+      className,
     )}
     {...props}
   />
@@ -121,7 +121,7 @@ const CommandItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm outline-hidden aria-selected:bg-slate-100/50 border border-transparent aria-selected:text-slate-900 dark:aria-selected:border-slate-700 aria-selected:border-slate-200 dark:aria-selected:bg-slate-800/50 dark:aria-selected:text-slate-50",
-      className
+      className,
     )}
     {...props}
   />
@@ -137,7 +137,7 @@ const CommandShortcut = ({
     <span
       className={cn(
         "ml-auto text-xs tracking-widest text-slate-500 dark:text-slate-400",
-        className
+        className,
       )}
       {...props}
     />

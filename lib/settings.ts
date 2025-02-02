@@ -7,7 +7,7 @@ export interface Settings {
 export function getSettings(): Settings | undefined {
   if (typeof window !== "undefined") {
     let s: Settings = JSON.parse(
-      localStorage.getItem("genidoc_settings") || "{}"
+      localStorage.getItem("genidoc_settings") || "{}",
     );
     return s;
   }

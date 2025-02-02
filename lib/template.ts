@@ -14,7 +14,7 @@ export function addTemplate(temp: Template) {
 export function loadTemplates(): Template[] {
   if (typeof window !== "undefined") {
     let templates: Template[] = JSON.parse(
-      localStorage.getItem("templates") || "[]"
+      localStorage.getItem("templates") || "[]",
     );
     return templates;
   }

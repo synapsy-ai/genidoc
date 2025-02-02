@@ -25,7 +25,7 @@ import {
 } from "@/lib/template";
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
-  { ssr: false }
+  { ssr: false },
 );
 export interface TemplateEditorProps {
   setTemplates: Function;
@@ -35,7 +35,7 @@ export interface TemplateEditorProps {
 }
 export default function CreateTemplate(props: TemplateEditorProps) {
   const [template, setTemplate] = useState(
-    props.template?.markdown_template || ""
+    props.template?.markdown_template || "",
   );
   const [name, setName] = useState(props.template?.name || "");
   const [lang, setLang] = useState(props.template?.language || "");

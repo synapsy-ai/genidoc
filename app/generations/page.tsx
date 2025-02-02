@@ -49,7 +49,7 @@ export default function Generations() {
                 encodeURIComponent(
                   typeof window !== "undefined"
                     ? JSON.stringify(history)
-                    : "{msg: 'an error occurred'}"
+                    : "{msg: 'an error occurred'}",
                 )
               }
               download={"generations.json"}

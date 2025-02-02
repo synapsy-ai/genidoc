@@ -44,12 +44,12 @@ const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
   {
     ssr: false,
-  }
+  },
 );
 
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
-  { ssr: false }
+  { ssr: false },
 );
 export default function Page() {
   let settings = getSettings();
