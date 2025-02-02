@@ -19,7 +19,7 @@ export default function TemplateItem(props: {
   id?: number;
 }) {
   return (
-    <div className="grid grid-cols-[1fr,auto] items-center">
+    <div className="grid grid-cols-[1fr_auto] items-center">
       <h4 className="text-lg font-medium">{props.template.name}</h4>
       <span className="space-x-2">
         <CreateTemplate

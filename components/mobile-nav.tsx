@@ -13,7 +13,7 @@ export default function MobileNavBar() {
         </Link>
         <div className="flex justify-center">
           <Link
-            className="group flex w-16 -translate-y-2 items-center justify-center rounded-full border border-blue-400 bg-gradient-to-r from-blue-500 to-sky-500 p-5 shadow-md shadow-blue-500/50 hover:from-blue-500 hover:to-blue-500"
+            className="group flex w-16 -translate-y-2 items-center justify-center rounded-full border border-blue-400 bg-linear-to-r from-blue-500 to-sky-500 p-5 shadow-md shadow-blue-500/50 hover:from-blue-500 hover:to-blue-500"
             href={"/create"}
           >
             <Plus

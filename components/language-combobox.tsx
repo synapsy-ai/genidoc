@@ -154,7 +154,7 @@ export function LanguageComboBox(props: {
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        value === language.value ? "opacity-100" : "opacity-0"
+                        value === language.value ? "opacity-100" : "opacity-0",
                       )}
                     />
                     {language.label}

@@ -64,7 +64,7 @@ export function ModelCombobox(props: {
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        value === model ? "opacity-100" : "opacity-0"
+                        value === model ? "opacity-100" : "opacity-0",
                       )}
                     />
                     {model}

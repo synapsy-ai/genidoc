@@ -62,12 +62,12 @@ export default function SettingsPage() {
   const [key, setKey] = useState(settings?.key);
   const [model, setModel] = useState(settings?.defaultModel ?? "gpt-3.5-turbo");
   const [models, setModels] = useState(
-    settings?.availableModels ?? ["gpt-3.5-turbo"]
+    settings?.availableModels ?? ["gpt-3.5-turbo"],
   );
   const [modelQuery, setModelQuery] = useState("");
   const [anchor, setAnchor] = useState("general");
   return (
-    <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-slate-100/40 p-4 px-2 pb-20 dark:bg-transparent sm:mt-16 sm:pb-0 md:gap-8 md:p-10">
+    <main className="flex min-h-[calc(100vh-(--spacing(16)))] flex-1 flex-col gap-4 bg-slate-100/40 p-4 px-2 pb-20 dark:bg-transparent sm:mt-16 sm:pb-0 md:gap-8 md:p-10">
       <div className="mx-auto grid w-full max-w-6xl gap-2">
         <h1 className="mx-2 text-3xl font-semibold">Settings</h1>
       </div>
@@ -123,7 +123,7 @@ export default function SettingsPage() {
                   variant="outline"
                   className="px-10 py-8"
                 >
-                  <div className="my-2 grid grid-cols-[auto,1fr] items-center space-x-2">
+                  <div className="my-2 grid grid-cols-[auto_1fr] items-center space-x-2">
                     <Sun />
                     <p>Light</p>
                   </div>
@@ -133,7 +133,7 @@ export default function SettingsPage() {
                   className="px-10 py-8"
                   onClick={() => setTheme("dark")}
                 >
-                  <div className="my-2 grid grid-cols-[auto,1fr] items-center space-x-2">
+                  <div className="my-2 grid grid-cols-[auto_1fr] items-center space-x-2">
                     <Moon />
                     <p>Dark</p>
                   </div>
@@ -143,7 +143,7 @@ export default function SettingsPage() {
                   className="px-10 py-8"
                   onClick={() => setTheme("system")}
                 >
-                  <div className="my-2 grid grid-cols-[auto,1fr] items-center space-x-2">
+                  <div className="my-2 grid grid-cols-[auto_1fr] items-center space-x-2">
                     <Laptop />
                     <p>System</p>
                   </div>

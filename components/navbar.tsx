@@ -6,7 +6,7 @@ import { Rocket, Settings } from "lucide-react";
 
 export default function NavBar() {
   return (
-    <nav className="fixed top-0 z-50 hidden w-full grid-cols-[auto,1fr,auto] bg-white/50 px-4 py-1 shadow-sm saturate-[1.1] backdrop-blur-md dark:bg-slate-900/30 sm:grid print:hidden">
+    <nav className="fixed top-0 z-50 hidden w-full grid-cols-[auto_1fr_auto] bg-white/50 px-4 py-1 shadow-xs saturate-[1.1] backdrop-blur-md dark:bg-slate-900/30 sm:grid print:hidden">
       <div className="m-2 flex items-center">
         <Link className="mr-2 flex space-x-2" href={"/"}>
           <Image alt="SynapsyLogo" height={25} width={25} src={"/logo.svg"} />

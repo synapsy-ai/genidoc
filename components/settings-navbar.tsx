@@ -15,7 +15,7 @@ export function SettingsNavBar(props: { currentPage: string }) {
         <Link
           key={i}
           className={
-            "grid grid-cols-[24px,1fr] items-center px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md border-l-4" +
+            "grid grid-cols-[24px_1fr] items-center px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md border-l-4" +
             (props.currentPage === el.link
               ? " border-sky-400 bg-slate-100 dark:bg-slate-800"
               : " border-transparent")
