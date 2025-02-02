@@ -13,13 +13,13 @@ import { Calendar } from "lucide-react";
 export function GenerationItem(props: { item: Generation; id: number }) {
   function getRandomGradient() {
     const gradients = [
-      "bg-gradient-to-r from-yellow-400 to-pink-500",
-      "bg-gradient-to-r from-green-400 to-blue-500",
-      "bg-gradient-to-r from-purple-400 to-red-500",
-      "bg-gradient-to-r from-pink-400 to-blue-500",
-      "bg-gradient-to-r from-indigo-500 to-purple-600",
-      "bg-gradient-to-r from-pink-500 to-indigo-600",
-      "bg-gradient-to-r from-red-500 to-yellow-500",
+      "bg-linear-to-r from-yellow-400 to-pink-500",
+      "bg-linear-to-r from-green-400 to-blue-500",
+      "bg-linear-to-r from-purple-400 to-red-500",
+      "bg-linear-to-r from-pink-400 to-blue-500",
+      "bg-linear-to-r from-indigo-500 to-purple-600",
+      "bg-linear-to-r from-pink-500 to-indigo-600",
+      "bg-linear-to-r from-red-500 to-yellow-500",
     ];
     return gradients[Math.floor(Math.random() * gradients.length)];
   }

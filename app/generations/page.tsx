@@ -28,12 +28,12 @@ export default function Generations() {
     setHistory(getSortedGenerations());
   }
   return (
-    <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-slate-100/40 p-4 pb-16 dark:bg-transparent sm:mt-16 sm:pb-0 md:gap-8 md:p-10 print:mt-0 print:bg-white">
+    <main className="flex min-h-[calc(100vh-(--spacing(16)))] flex-1 flex-col gap-4 bg-slate-100/40 p-4 pb-16 dark:bg-transparent sm:mt-16 sm:pb-0 md:gap-8 md:p-10 print:mt-0 print:bg-white">
       <div className="mx-auto w-full max-w-6xl">
         <div className="mx-auto grid w-full gap-2 print:hidden">
           <h1 className="text-3xl font-semibold">My Generations</h1>
         </div>
-        <header className="bg-white-25 sticky top-0 z-50 w-full p-2 shadow-sm backdrop-blur-md dark:bg-slate-900/25 sm:static sm:bg-transparent sm:p-0 sm:shadow-none sm:dark:bg-transparent">
+        <header className="bg-white-25 sticky top-0 z-50 w-full p-2 shadow-xs backdrop-blur-md dark:bg-slate-900/25 sm:static sm:bg-transparent sm:p-0 sm:shadow-none sm:dark:bg-transparent">
           <Input
             type="file"
             id="FileSelector"
