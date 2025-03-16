@@ -27,7 +27,7 @@
     "framer-motion": "^12.5.0",
     "gpt-token-utils": "^1.2.0",
     "lucide-react": "^0.477.0",
-    "next": "15.2.1",
+    "next": "15.2.2",
     "next-themes": "^0.4.4",
     "openai": "^4.87.3",
     "react": "^19",
