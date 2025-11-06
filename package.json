@@ -1,6 +1,6 @@
 {
   "name": "genidoc",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -15,8 +15,8 @@
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-select": "^2.2.6",
-    "@radix-ui/react-separator": "^1.1.7",
-    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@uiw/react-markdown-preview": "^5.1.5",
@@ -24,12 +24,12 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "framer-motion": "^12.23.12",
+    "framer-motion": "^12.23.24",
     "gpt-token-utils": "^1.2.0",
-    "lucide-react": "^0.544.0",
-    "next": "15.5.3",
+    "lucide-react": "^0.552.0",
+    "next": "16.0.1",
     "next-themes": "^0.4.6",
-    "openai": "^5.20.1",
+    "openai": "^6.8.1",
     "react": "^19",
     "react-code-blocks": "^0.1.6",
     "react-dom": "^19",
@@ -38,15 +38,15 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.13",
+    "@tailwindcss/postcss": "^4.1.16",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/uuid": "^10.0.0",
+    "@types/uuid": "^11.0.0",
     "eslint": "^9",
-    "eslint-config-next": "15.5.3",
+    "eslint-config-next": "16.0.1",
     "postcss": "^8",
-    "tailwindcss": "^4.1.13",
+    "tailwindcss": "^4.1.16",
     "typescript": "^5"
   }
 }
