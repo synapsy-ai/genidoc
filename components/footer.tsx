@@ -50,7 +50,7 @@ export default function SiteFooter() {
       </div>
       <div className="flex flex-col items-center pb-4">
         <p className="text-center">
-          v{version} - © {new Date().getFullYear()} Peyronnet Group and Synapsy
+          v{version} - © {new Date().getFullYear()} Synapsy
         </p>
       </div>
     </footer>
